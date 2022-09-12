@@ -43,7 +43,7 @@ class DragonList extends React.Component {
 const mapStateToProps = (state) => {
   console.log('Dragon State:', state)
   return ({
-    members: state.members
+    members: state.dragon.members
   })
 }
 

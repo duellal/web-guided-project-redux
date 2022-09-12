@@ -33,10 +33,11 @@ const Title = (props) => {
 };
 
 const mapStateToProps = state => {
+  console.log('Title:', state)
   return ({
-    title: state.title,
-    editing: state.editing,
-    newThingInStateJustForTheComponent: (state.title + state.editing)
+    title: state.title.title,
+    editing: state.title.editing,
+    newThingInStateJustForTheComponent: (state.title.title + state.title.editing)
   })
 }
 

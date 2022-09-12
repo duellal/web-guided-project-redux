@@ -2,21 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { configureStore } from '@reduxjs/toolkit'
-// import { createStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
 import Title from './components/Title';
 import DragonList from './components/DragonList';
 
-import titleReducer from './reducers/titleReducer';
-import dragonReducer from './reducers/dragonReducer';
+import reducers from './reducers/index'
 
 import './styles.css';
 
 
 //Creating store:
-// const store = createStore(titleReducer)
-const store = configureStore({ reducer: dragonReducer })
+const store = configureStore({ reducer: reducers })
+console.log(store.getState())
 
 function App() {
   return (

@@ -1,32 +1,50 @@
-import React, { useState, useReducer } from 'react';
+import React from 'react';
 
-import titleReducer, { initialState } from '../reducers/titleReducer';
-import { toggleEditing, updateTitle} from './../actions/titleActions';
+import { connect } from 'react-redux';
+
+import { toggleEditing, updateTitle } from './../actions/titleActions';
 
 import TitleDisplay from './TitleDisplay';
 import TitleForm from './TitleForm';
 
-const Title = () => {
-  const [state, dispatch] = useReducer(titleReducer, initialState);
+const Title = (props) => {
+  //from mapStateToProps:
+  //Gives access to initial state within the component
+  console.log('Props:', props)
 
   const handleToggleEditing = () => {
-    dispatch(toggleEditing());
+    props.toggleEditing();
   }
 
   const handleTitleUpdate = (title) => {
-    dispatch(updateTitle(title));
+    props.updateTitle(title);
   }
 
   return (
     <div>
-      <h1>{state.appName}</h1>
+      <h1>{props.appName}</h1>
       {
-        !state.editing ? 
-          <TitleDisplay title={state.title} handleToggleEditing={handleToggleEditing}/>: 
-          <TitleForm handleTitleUpdate={handleTitleUpdate}/>
+        !props.editing ?
+          <TitleDisplay title={props.title} handleToggleEditing={handleToggleEditing} /> :
+          <TitleForm handleTitleUpdate={handleTitleUpdate} />
       }
     </div>
   );
 };
 
-export default Title;
+const mapStateToProps = state => {
+  console.log('Title:', state)
+  return ({
+    title: state.title.title,
+    editing: state.title.editing,
+    newThingInStateJustForTheComponent: (state.title.title + state.title.editing)
+  })
+}
+
+const mapActionsToProps = {
+  //don't need dispatch b/c this(mapActionsToProps) automatically wraps the below functions in dispatch
+  toggleEditing,
+  updateTitle
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(Title);

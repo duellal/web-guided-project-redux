@@ -1,32 +1,31 @@
 import React from 'react';
 import DragonMember from './DragonMember';
+import { addMember } from '../actions/dragonActions';
+
+import { connect } from 'react-redux'
 
 class DragonList extends React.Component {
   state = {
-    newMember: '',
-    members: [
-      { name: 'Jojo Zhang', dragonStatus: true },
-      { name: 'Brandon Harris', dragonStatus: false }
-    ]
+    newMember: ''
   };
 
   handleChanges = e => {
     this.setState({ ...this.state, newMember: e.target.value });
   };
 
-  handleClick = ()=> {
-    this.setState({
-      ...this.state,
-      members: [...this.members, {name: newMember, dragonStatus: true}]
-    })
+  handleClick = (e) => {
+    this.props.addMember(this.state.newMember)
   }
 
   render() {
+    //Checking to make sure you have access to props:
+    console.log('Props:', this.props)
+
     return (
       <div>
         <div className="friends-list">
-          {this.state.members.map((member, index) => (
-            <DragonMember key={index} member={member}/>
+          {this.props.members.map((member, index) => (
+            <DragonMember key={index} member={member} />
           ))}
         </div>
         <input
@@ -41,4 +40,11 @@ class DragonList extends React.Component {
   }
 }
 
-export default DragonList;
+const mapStateToProps = (state) => {
+  console.log('Dragon State:', state)
+  return ({
+    members: state.dragon.members
+  })
+}
+
+export default connect(mapStateToProps, { addMember })(DragonList)

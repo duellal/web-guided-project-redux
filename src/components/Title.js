@@ -13,11 +13,11 @@ const Title = (props) => {
   console.log('Props:', props)
 
   const handleToggleEditing = () => {
-    props.dispatch(toggleEditing());
+    props.toggleEditing();
   }
 
   const handleTitleUpdate = (title) => {
-    props.dispatch(updateTitle(title));
+    props.updateTitle(title);
   }
 
   return (
@@ -40,4 +40,9 @@ const mapStateToProps = state => {
   })
 }
 
-export default connect(mapStateToProps)(Title);
+const mapActionsToProps = {
+  toggleEditing,
+  updateTitle
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(Title);

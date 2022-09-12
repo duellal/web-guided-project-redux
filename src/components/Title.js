@@ -41,6 +41,7 @@ const mapStateToProps = state => {
 }
 
 const mapActionsToProps = {
+  //don't need dispatch b/c this(mapActionsToProps) automatically wraps the below functions in dispatch
   toggleEditing,
   updateTitle
 }

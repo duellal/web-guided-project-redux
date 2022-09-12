@@ -9,13 +9,14 @@ import Title from './components/Title';
 import DragonList from './components/DragonList';
 
 import titleReducer from './reducers/titleReducer';
+import dragonReducer from './reducers/dragonReducer';
 
 import './styles.css';
 
 
 //Creating store:
 // const store = createStore(titleReducer)
-const store = configureStore({ reducer: titleReducer })
+const store = configureStore({ reducer: dragonReducer })
 
 function App() {
   return (

@@ -12,4 +12,11 @@ Why redux? What do you get out of using redux?
 - The code only connects state to components that NEED it
 - State management is more predictable
 
+ How much different is angular to redux?
+ - Yes, there is a lot different - more comparable to react than to redux. You can use redux with angular
+ - Vue is more similar to redux + very well organized
+
+ Would Provider wrap Router or vice versa?
+ - Depends on the application - 9/10 times probably wrap the Router with the Provider 
+ - Provider is usually applied to everything
  

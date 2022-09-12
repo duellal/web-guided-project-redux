@@ -13,11 +13,11 @@ const Title = (props) => {
   console.log('Props:', props)
 
   const handleToggleEditing = () => {
-    dispatch(toggleEditing());
+    props.dispatch(toggleEditing());
   }
 
   const handleTitleUpdate = (title) => {
-    dispatch(updateTitle(title));
+    props.dispatch(updateTitle(title));
   }
 
   return (
@@ -35,7 +35,8 @@ const Title = (props) => {
 const mapStateToProps = state => {
   return ({
     title: state.title,
-    editing: state.editing
+    editing: state.editing,
+    newThingInStateJustForTheComponent: (state.title + state.editing)
   })
 }
 
